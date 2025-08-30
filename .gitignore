@@ -1,0 +1,14 @@
+Entorno virtual de Python
+venv/
+.venv/
+
+Archivos de cache y de prueba
+pycache/
+.pytest_cache/
+.vscode/
+
+Archivos de entorno y de datos sensibles
+.env
+db_data/
+
+mongo/

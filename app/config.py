@@ -1,5 +1,5 @@
-from pydantic_settings import BaseSettings
-from pathlib import Path
+from pydantic_settings import BaseSettings # - para cargar variables de entorno en una clase tipada
+from pathlib import Path # - para manejar rutas y ubicar el archivo .env
 
 class Settings(BaseSettings):
     MONGO_USER: str

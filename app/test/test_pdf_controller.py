@@ -1,13 +1,16 @@
 import os
 import io
 import pytest
-from app.controllers import pdf_controller
-from app.db.mongo import db
-from app.config import settings
+from app.controllers import pdf_controller  # Importamos el controlador a testear
+from app.db.mongo import db # Conexion a MongoDB
+from app.config import settings # Variables de entorno
 
 
+# Fixture de pytest para devolver la ruta del PDF de prueba
 @pytest.fixture
 def test_pdf_path():
+
+    # Devuelve la ruta del archivo "test.pdf" dentro de la carpeta "data"
     return os.path.join(os.path.dirname(__file__), "data", "test.pdf")
 
 
@@ -28,7 +31,7 @@ def test_handle_upload_pdf(test_pdf_path, monkeypatch):
     test_collection_name = "test_collection"
     test_collection = db[test_collection_name]
 
-    # Limpiar colección de prueba antes de test
+    # Limpiar coleccion de prueba antes de test
     test_collection.delete_many({})
 
     # Reemplazar temporalmente settings.COLLECTION_NAME por la de prueba
@@ -48,6 +51,6 @@ def test_handle_upload_pdf(test_pdf_path, monkeypatch):
     docs_in_db = list(test_collection.find({}))
     assert len(docs_in_db) == result["inserted"]
 
-
+# Funcion auxiliar para limpiar la colección de prueba manualmente.
 def clear_test_collection():
     db["test_collection"].delete_many({})

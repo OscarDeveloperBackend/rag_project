@@ -7,6 +7,9 @@ pycache/
 .pytest_cache/
 .vscode/
 
+__pycache__/
+*.pyc
+
 Archivos de entorno y de datos sensibles
 .env
 db_data/

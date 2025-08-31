@@ -14,17 +14,12 @@ OPENROUTER_MODEL = "deepseek/deepseek-chat-v3.1:free"
 # Funcion que genera una respuesta usando el llm para procesar la pregunta y la respuesta.
 def generate_answer(question: str, context: str) -> str:
     try:
-        prompt = f"""Eres un asistente útil y servicial.
-Responde a la siguiente pregunta de forma clara y completa, usando únicamente la información del contexto.
-Si no hay suficiente información en el contexto, responde exactamente: "No se encontró información para responder".
+        prompt = f"""Eres un asistente útil y servicial. 
+        Responde a la siguiente pregunta de forma clara y completa usando únicamente la información del contexto. 
+        Ignora cualquier '\\n' o salto de línea que aparezca en los datos, y no agregues saltos de línea en tu respuesta. 
+        Si no hay suficiente información en el contexto, responde exactamente: "No se encontró información para responder". 
+        Contexto: {context} Pregunta: {question} Respuesta:"""
 
-Contexto:
-{context}
-
-Pregunta:
-{question}
-
-Respuesta:"""
 
         # Llamamos al endpoint de chat completions para generar la respuesta
         response = client.chat.completions.create(
